@@ -19,7 +19,7 @@ Help running `mix format -` to format file
   "elixirLS.dialyzerEnabled": true,
   "elixirLS.signatureAfterComplete": false,
   "elixirLS.fetchDeps": false,
-
+  "editor.formatOnSave": true,
   "files.associations": {
     "*.heex": "phoenix-heex"
   },
