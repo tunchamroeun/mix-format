@@ -4,6 +4,10 @@
   "description": "run mix format",
   "version": "0.0.1",
   "publisher": "tunchamroeun",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/animus-coop/vscode-elixir-mix-formatter.git"
+  },
   "engines": {
     "vscode": "^1.82.0"
   },
