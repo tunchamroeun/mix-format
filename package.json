@@ -22,7 +22,7 @@
     "commands": [
       {
         "command": "mix-format.formatFile",
-        "title": "Format File"
+        "title": "mix-format:Format File"
       }
     ]
   },
