@@ -30,6 +30,8 @@ function format(document: TextDocument): Promise<TextEdit[]> {
       textEditor.edit((editBuilder) => {
         editBuilder.replace(fullDocumentRange(document), result.stdout);
       });
+    }else{
+      window.showErrorMessage("Something went wrong!");
     }
   });
 }
