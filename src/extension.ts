@@ -44,17 +44,7 @@ function format(document: TextDocument): Promise<TextEdit[]> {
 }
 
 export function activate(context: ExtensionContext) {
-  languages.registerDocumentFormattingEditProvider("elixir", {
-    provideDocumentFormattingEdits(
-      document: TextDocument
-    ): Thenable<TextEdit[]> {
-      return document.save().then(() => {
-        return format(document);
-      });
-    },
-  });
-
-  languages.registerDocumentFormattingEditProvider("phoenix-heex", {
+  languages.registerDocumentFormattingEditProvider(["phoenix-heex", "elixir"], {
     provideDocumentFormattingEdits(
       document: TextDocument
     ): Thenable<TextEdit[]> {

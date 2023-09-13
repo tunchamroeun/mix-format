@@ -2,7 +2,7 @@
   "name": "mix-format",
   "displayName": "STDIO Mix Formatter",
   "description": "run `mix format -` in your project",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "tunchamroeun",
   "icon": "images/logo.png",
   "repository": {
