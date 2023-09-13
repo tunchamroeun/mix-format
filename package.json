@@ -1,0 +1,67 @@
+{
+  "name": "mix-format",
+  "displayName": "mix-format",
+  "description": "run mix format",
+  "version": "0.0.1",
+  "publisher": "tunchamroeun",
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:elixir"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mix-format.formatFile",
+        "title": "Format File"
+      }
+    ]
+  },
+  "configuration": {
+    "type": "object",
+    "title": "Elixir Formatter Settings",
+    "properties": {
+      "elixir.formatter.mixFormatArgs": {
+        "type": "string",
+        "default": "",
+        "description": "Arguments to pass to 'mix format'"
+      },
+      "elixir.formatter.formatterCwd": {
+        "type": "string",
+        "default": "",
+        "description": "The working directory to run 'mix format' from (relative to workspace directory)"
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.82.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.6",
+    "ts-loader": "^9.4.4",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "@vscode/test-electron": "^2.3.4"
+  }
+}
