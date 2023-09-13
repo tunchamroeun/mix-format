@@ -1,9 +1,10 @@
 {
   "name": "mix-format",
-  "displayName": "mix-format",
-  "description": "run mix format",
-  "version": "0.0.1",
+  "displayName": "STDIO Mix Formatter",
+  "description": "run `mix format -` in your project",
+  "version": "0.0.3",
   "publisher": "tunchamroeun",
+  "icon": "images/logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/tunchamroeun/mix-format.git"
@@ -15,7 +16,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:elixir"
+    "onLanguage:elixir",
+    "onLanguage:phoenix-heex"
   ],
   "main": "./dist/extension.js",
   "contributes": {

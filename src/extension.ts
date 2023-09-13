@@ -1,4 +1,5 @@
 import { languages, ExtensionContext } from "vscode";
+import { extname } from "path";
 import {
   workspace,
   commands,
@@ -16,12 +17,18 @@ function fullDocumentRange(document: TextDocument): Range {
 
 function format(document: TextDocument): Promise<TextEdit[]> {
   return new Promise((resolve, reject) => {
+    const ext = extname(document.fileName);
     const cwd = workspace.workspaceFolders?.at(0)?.uri.path || ".";
-    const result = cp.spawnSync("mix", ["format", "-"], {
-      cwd: cwd,
-      input: document.getText(),
-      encoding: "utf-8",
-    });
+    const result = cp.spawnSync(
+      "mix",
+      ["format", "--stdin-filename", `stdin${ext}`, "-"],
+      {
+        cwd: cwd,
+        input: document.getText(),
+        encoding: "utf-8",
+      }
+    );
+
     if (result.stderr === "" && result.stdout !== "") {
       const textEditor = window.activeTextEditor;
       if (!textEditor) {
@@ -30,7 +37,7 @@ function format(document: TextDocument): Promise<TextEdit[]> {
       textEditor.edit((editBuilder) => {
         editBuilder.replace(fullDocumentRange(document), result.stdout);
       });
-    }else{
+    } else {
       window.showErrorMessage("Something went wrong!");
     }
   });
@@ -38,6 +45,16 @@ function format(document: TextDocument): Promise<TextEdit[]> {
 
 export function activate(context: ExtensionContext) {
   languages.registerDocumentFormattingEditProvider("elixir", {
+    provideDocumentFormattingEdits(
+      document: TextDocument
+    ): Thenable<TextEdit[]> {
+      return document.save().then(() => {
+        return format(document);
+      });
+    },
+  });
+
+  languages.registerDocumentFormattingEditProvider("phoenix-heex", {
     provideDocumentFormattingEdits(
       document: TextDocument
     ): Thenable<TextEdit[]> {
